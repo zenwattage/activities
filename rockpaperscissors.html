@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Scott's Rock Paper Scissors Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Lobster" rel="stylesheet"> 
+
+    <style>
+        body {
+            background-color: cornflowerblue;
+        }
+
+        p {
+            font-size: 40px;
+            text-shadow: 2px 1px white;
+            font-family: 'Lobster', cursive;
+        }
+
+        .game {
+            margin-left: auto;
+            margin-right: auto;
+            width: 300px;
+            height: auto;
+            border: 5px solid black;
+            padding: 10px;
+        }
+    
+    </style>
+    
+</head>
+<body>
+    <!-- Display section  -->
+    <div class="game">
+        <p id="userText">Your Choice: </p>
+        <p id="compText">Computer Choice: </p>
+        <p id="winText">Wins: </p>
+        <p id="lossText">Losses: </p>
+        <p id="tieText">Ties: </p>
+        <p id="messageText"> Message: </p>
+    </div>
+
+<script type="text/javascript">
+
+    //counters
+    var wins = 0;
+    var losses = 0;
+    var ties = 0;
+
+    //list for pc to choose from
+    var pcChoices = ["r","p","s"];
+
+    //where in our html we will output to the user
+    var userChoice = document.getElementById("userText");
+    var compChoice = document.getElementById("compText");
+    var winsText = document.getElementById("winText");
+    var lossesText = document.getElementById("lossText");
+    var tiesText = document.getElementById("tieText");
+    var message = document.getElementById("messageText");
+
+
+    //when the user presses a key this function runs
+    document.onkeyup = function(event) {
+        //determines which key the user pressed
+        var userGuess = event.key;
+
+        //generate random choice from array for PC Player
+        var pcGuess = pcChoices[Math.floor(Math.random() * pcChoices.length)];
+
+        //game logic
+
+        if(userGuess === "s" && pcGuess === "p" || userGuess === "p" && pcGuess === "r" || userGuess === "r" && pcGuess === "s") {
+            wins++;
+        }
+
+        if(userGuess === "s" && pcGuess === "r" || userGuess === "p" && pcGuess === "s" || userGuess === "r" && pcGuess === "p") {
+            losses++;
+        } 
+        
+        else {
+            ties++;
+        }
+
+
+        //display to user @ the p-ID's we created above
+        userChoice.textContent = "You chose: " + userGuess;
+        compChoice.textContent = "The computer chose: " + pcGuess;
+        winsText.textContent = "Wins: " + wins;
+        lossesText.textContent = "Losses: " + losses;
+        tiesText.textContent = "Ties: " + ties;
+        message.textContent = "Congrats you win with: " + userGuess;
+    
+    
+    };
+    
+
+
+    </script>
+    
+</body>
+</html>

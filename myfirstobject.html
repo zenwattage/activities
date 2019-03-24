@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>My First Object</title>
+  </head>
+  <body>
+    
+
+    <!-- display section-->
+    <div class="game">
+      <p id="userText">You chose: </p>
+    </div>
+
+  <script type="text/javascript">    
+
+      var car = {
+        make: "Honda",
+        model: "Fit",
+        color: "Blue Raspberry",
+        mileage: 3000,
+        isWorking: true,
+
+        driveToWork: function() {
+
+          alert("Old Mileage: " + this.mileage);
+
+          this.mileage = this.mileage + 8;
+
+          alert("New mileage: " + this.mileage);
+        },
+
+        driveAroundWorld: function() {
+
+          alert("Old Mileage: " + this.mileage);
+
+          this.mileage = this.mileage + 24000;
+
+          alert("New Mileage: " + this.mileage);
+          alert("Car needs a tuneup!");
+
+          this.isWorking = false;
+        },
+
+        getTuneUp: function() {
+          alert("Car is ready to go!");
+          this.isWorking = true;
+        },
+
+        honk: function() {
+          alert("Honk! Honk!");
+        }
+      };
+
+
+//where our output will display
+    var userChoice = document.getElementById("userText");
+
+      //when key is pressed run
+    document.onkeyup = function(event) {
+
+      //get key that user presses
+      var userPick = event.key;
+      var options = ["h","d","w","t"];
+
+      if(userPick === "h"){
+        console.log("HONK!HONK!HONK!");
+      }
+
+      if(userPick === "d"){
+        console.log(car.driveToWork());
+      }
+
+      if(userPick === "w") {
+        console.log(car.driveAroundWorld());
+      }
+
+      if(userPick === "t") {
+        console.log(car.getTuneUp());
+      }
+
+      //display to user
+      userChoice.textContent = "User chose: " + userPick;
+  };
+
+
+
+    /*    
+   // How would we log...
+
+      // The car's make?
+      console.log(car.make);
+      // The car's model?
+      console.log(car.model);
+
+      // The car's mileage?
+      console.log(car.mileage);
+
+        // How would we run the car's driveToWork method?
+        console.log(car.driveToWork());
+
+      // How would we run the car's driveAroundWorld method?
+      console.log(car.driveAroundWorld());
+
+      // How would we run the getTuneUp method?
+      console.log(car.getTuneUp()); 
+      
+      */
+
+    </script>
+    
+  </body>
+</html>

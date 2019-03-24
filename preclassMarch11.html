@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    
+</head>
+<body>
+<p id="sum"></p>
+
+<script>
+
+    
+    function numIn(num) {
+        var sum = 0;
+        for(var i = 0; i <= num; i++) {
+            sum += i;
+
+        }return sum;
+    }
+
+
+    document.getElementById("sum").innerHTML = "The Sum is: " + numIn(5);
+</script>
+    
+</body>
+</html>
+
