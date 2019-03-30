@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Sign-Up Today!</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+
+    <br>
+
+    <!-- Jumbotron -->
+    <div class="jumbotron">
+      <h1 class="text-center">Sign-Up Today!</h1>
+    </div>
+
+    <div class="row">
+
+      <!-- Sign-Up Card-->
+      <div class="col-lg-6">
+        <div class="card card-default">
+          <div class="card-header">
+            New Member Sign-Up
+          </div>
+          <div class="card-body">
+
+            <!-- Sign-up Form (note the various input "types")-->
+            <form role="form">
+              <div class="form-group row">
+                <label for="name-input">Name:</label>
+                <input class="form-control" id="name-input" type="text">
+              </div>
+              <div class="form-group row">
+                <label for="email-input">Email:</label>
+                <input class="form-control" id="email-input" type="email">
+              </div>
+              <div class="form-group row">
+                <label for="age-input">Age:</label>
+                <input class="form-control" id="age-input" type="number">
+              </div>
+              <div class="form-group row">
+                <label for="comment-input">How did you hear about us?</label>
+                <textarea class="form-control" id="comment-input" rows="5"></textarea>
+              </div>
+              <button class="btn btn-default" id="add-user" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Most Recent Member card -->
+      <div class="col-lg-6">
+        <div class="card card-default">
+          <div class="card-header">
+            Most Recent Member
+          </div>
+          <div class="card-body" id="recent-member">
+            <h2 id="name-display"></h2>
+            <h4 id="email-display"></h4>
+            <h4 id="age-display"></h4>
+            <p id="comment-display"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery.js"></script>
+
+  <!-- Script -->
+  <script>
+    // ========================================= START CODING BELOW!!
+
+    function readCookie(name) {
+      var nameEQ = name + "=";
+      var ca = document.cookie.split(";");
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) === " ") c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) === 0) {
+          return c.substring(nameEQ.length, c.length);
+        }
+      }
+      return null;
+    }
+
+    // Capture Button Click
+    $("#add-user").on("click", function (event) {
+      event.preventDefault();
+
+      // Capture User Inputs and store them into variables
+      var inputs = $("input, textarea");
+      var storage = {};
+
+      inputs.each(function () {
+        // Console log each of the user inputs to confirm we are receiving them correctly
+        //console.log(this);
+
+        // Output all of the new information into the relevant HTML sections
+        var $this = $(this);
+
+        var fieldID = $this.attr("id");
+        var slicePoint = $this.attr("id").length - 6;
+        fieldID = fieldID.slice(0, slicePoint);
+
+        console.log(fieldID);
+
+        storage[fieldID] = $this.val();
+
+        $("#" + fieldID + "-display").text($this.val());
+
+        // REPLACE THIS WITH A SETTING A COOKIE
+        //sessionStorage.setItem("storage", JSON.stringify(storage));
+        // Clear the previous cookie by setting it it equal to nothing and its expiration date to a past time
+        document.cookie = "storage=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+
+        // Store all of the parameters as part of the cookie string
+        document.cookie = "storage=" + JSON.stringify(storage);
+      });
+    });
+
+    $(document).ready(function () {
+      // REPLACE THIS WITH GETTING A COOKIE
+      //var storage = JSON.parse(sessionStorage.getItem("storage"));
+      var storage = readCookie("storage");
+
+      if (storage !== null) {
+        storage = JSON.parse(storage);
+        $("#name-display").text(storage.name);
+        $("#email-display").text(storage.email);
+        $("#age-display").text(storage.age);
+        $("#comment-display").text(storage.comment);
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
