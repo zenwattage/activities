@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    
+</head>
+<body>
+    <div class="container">
+
+    <div id="gifsView"></div>
+
+    <form id="input-form">
+        <label for="gif-input">Choose a gif, Breh</label>
+        <input type="text" id="gif-input"><br>
+            <p id="gif-view"></p>
+            <img id='poster'></img>
+            
+        <!--button triggers new gif to be added -->
+        <input id="add-gif" type="submit" value="Add a gif, Breh">
+    </form>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        $("#add-gif").on("click", function() {
+
+
+        
+        //initial array of gifs
+        var gifs = ["fail", "lol", "wtf"];
+
+        function displayGifInfo() {
+
+            var gifInfo = $(this).attr('data-name');
+            console.log(gifInfo);
+
+            $.ajax({
+                url: "http://api.giphy.com/v1/gifs/random?q=" + gifInfo + "&api_key=qMlER3WihJe3HimCr4i0TsXcrJBr1QiF&limit=1",
+                method: "GET"
+            }).then(function(response) {
+                //store image
+                var imageURL = response.data.image_original_url;
+                console.log(imageURL);
+                var gifImage = $("<img>");
+                //set gifImage src attribute
+                gifImage.attr("src", imageURL);
+                gifImage.attr("alt", "gif image");
+
+                // output Gif to DOM
+                $("#gifs").prepend(gifImage);
+
+            });
+
+        }
+
+
+        function renderButtons() {
+            $('#gif-view').empty();
+            //loop through gifs
+            for(var i = 0; i < gifs.length; i++) {
+                //dynamically create button
+                var button = $("<button>");
+                //add class of gif to button
+                button.addClass('gif');
+                button.attr("data-name", gifs[i]);
+                button.text(gifs[i]);
+                $("#gifs-view").append(button);
+            }
+        }   
+
+        //button clicks
+        $("#add-gif").on("click", function(event) {
+            event.preventDefault();
+
+            //get input from textbox
+            var gif = $("#gif-input").val().trim();
+            // gif is added to our array
+            gifs.push(gif);
+            //call renderButtons
+            renderButtons();
+        });
+
+        //display gifInfo
+        $(document).on("click", ".gif", displayGifInfo);
+
+        //display initial buttons
+        renderButtons();
+
+    });
+    
+    
+    </script>
+
+</div>
+</body>
+</html>
