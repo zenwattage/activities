@@ -79,36 +79,67 @@
   <script src="https://code.jquery.com/jquery.js"></script>
 
   <!-- LINK TO FIREBASE GOES HERE -->
-  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
+
 
   <!-- Script -->
   <script>
     //  START CODING BELOW!!
 
+     // Initialize Firebase
     // Initialize Firebase
-
+    var config = {
+    apiKey: "AIzaSyCXvQ1jWnFRUW03Kq0ixcw_Rv05DevyjxI",
+    authDomain: "project13-3e4b3.firebaseapp.com",
+    databaseURL: "https://project13-3e4b3.firebaseio.com",
+    projectId: "project13-3e4b3",
+    storageBucket: "project13-3e4b3.appspot.com",
+    messagingSenderId: "461239697809"
+  };
+  firebase.initializeApp(config);
 
     // Create a variable to reference the database
+  var database = firebase.database();
 
+
+  var name= "";
+  var phone = 0;
+  var age = 0;
+  var comment = "";
 
     // Capture Button Click
-    $("#add-user").on("click", function(event) {
-      // Don't refresh the page!
-      event.preventDefault();
+  $("#add-user").on("click", function(event) {
+    // Don't refresh the page!
+    event.preventDefault();
 
-      // YOUR TASK!!!
+    //get inputs
+    name = $("#name-input").val().trim();
+    email = $("#email-input").val().trim();
+    age = $("#age-input").val().trim();
+    comment = $("#comment-input").val().trim();
 
-      // Code in the logic for storing and retrieving the most recent user.
+    // Code in the logic for storing and retrieving the most recent user.
+    database.ref().set({
+      name: name,
+      email: email,
+      age: age,
+      comment: comment
+    })
+    // Don't forget to provide initial data to your Firebase database.
 
-      // Don't forget to provide initial data to your Firebase database.
-
-    });
+  });
 
 
     // Firebase watcher + initial loader HINT: .on("value")
-
+database.ref().on("value", function(snapshot) {
+  console.log(snapshot.val());
+})
 
     // Create Error Handling
+
+    function errorObject() {
+      console.log("The read failed: " + errorObject.code);
+    }
 
   </script>
 
