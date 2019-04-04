@@ -19,8 +19,10 @@ var database = firebase.database();
 
 // --------------------------------------------------------------
 // Link to Firebase Database for viewer tracking
+var connectionsRef = database.ref("/connections");
 
 
+var connectedRef = database.reef(".info/connected");
 // --------------------------------------------------------------
 // Initial Values
 var initialBid = 0;
