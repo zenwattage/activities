@@ -1,0 +1,130 @@
+<!DOCTYPE = html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Testing LIFX api</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1 id="temp"></h1>            
+        </div>
+
+        <div id="results"></div>
+
+        <button id="button">On/Off</button>
+        <button id="redbutton">Red</button>
+        <button id="bluebutton">Blue</button>
+
+        <script>
+            
+            $.ajax({
+                url: 'https://api.lifx.com/v1/lights/all',
+                headers: {"Authorization":"Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58"},
+                type: 'GET'
+                
+            }).then(function(res) {
+                console.log(res);
+                console.log(res[0].id);
+                console.log(res[0].color);
+                console.log(res[0].color.kelvin);
+                console.log(res[0].color.hue);
+                console.log(res[0].power);
+                //console.log(res[0].data);
+            })
+
+    $("#button").on("click", function(){
+        $.ajax({
+            type: "POST",
+            url:"https://api.lifx.com/v1/lights/d073d53e6090/toggle",
+            headers: {"Authorization":"Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58"},
+            data: { 
+                    "defaults": 
+                {
+                    "duration": 5.0 // all states will be applied over 5 seconds
+
+                }
+            }
+        });            
+    })
+
+
+
+    $("#redbutton").on("click", function(){
+        $.ajax({
+            type: "PUT",
+            url:"https://api.lifx.com/v1/lights/d073d53e6090/state",
+            headers: {"Authorization":"Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58"},
+            data: {
+                "power": "on",
+                "color": "red",
+                "brightness": 0.1,
+                "fast": false,
+                    "defaults": 
+                {
+                    "duration": 5.0 // all states will be applied over 5 seconds
+
+                }
+            }
+        });            
+    })
+
+    $("#bluebutton").on("click", function(){
+        $.ajax({
+            type: "PUT",
+            url:"https://api.lifx.com/v1/lights/d073d53e6090/state",
+            headers: {"Authorization":"Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58"},
+            data: {
+                "power": "on",
+                "color": "blue",
+                "brightness": 0.1,
+                "fast": false,
+                    "defaults": 
+                {
+                    "duration": 5.0 // all states will be applied over 5 seconds
+
+                }
+            }
+        });            
+    })
+
+
+
+          
+            // PUT /v1/lights/all/state
+/* 
+
+            {
+            "power": "on",
+            "color": "blue saturation:0.5",
+            "brightness": 0.5,
+            "duration": 5,            
+            }
+ */
+ 
+
+
+
+/* 
+            fetch('https://api.lifx.com/v1/lights/all')
+            .then(response => {
+                response.json()
+            })
+            .then(data => {
+                console.log(data)
+            })
+            .catch(err => {
+                console.error(err)
+            });
+ 
+  */           
+        
+    </script>
+
+        
+    </body>
+</html>
