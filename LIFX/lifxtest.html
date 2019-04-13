@@ -23,11 +23,15 @@
         <button id="greenbutton">Green</button>
         <button id="bluebutton">Blue</button>
         <button id="purplebutton">Purple</button>
+        <button id="yellowbutton">yellow</button>
         <script>
 
             var today = new Date();
             var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-
+            var bearer = "Bearer ";
+            var lifxToken = "cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58";
+            var myDeskLamp = "d073d53e6090";
+            var lifxStateUrl = "https://api.lifx.com/v1/lights/" + myDeskLamp + "/state";
 
 
             console.log("The time is: " + time);
@@ -35,7 +39,7 @@
 
             $.ajax({
                 url: 'https://api.lifx.com/v1/lights/all',
-                headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                headers: { "Authorization": bearer + lifxToken },
                 type: 'GET'
 
             }).then(function (res) {
@@ -54,8 +58,8 @@
             function redSwitch() {
                 $.ajax({
                     type: "PUT",
-                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    url: lifxStateUrl,
+                    headers: { "Authorization": bearer + lifxToken },
                     data: {
                         "power": "on",
                         "color": "red",
@@ -79,8 +83,8 @@
             function greenSwitch() {
                 $.ajax({
                     type: "PUT",
-                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    url: lifxStateUrl,
+                    headers: { "Authorization": bearer + lifxToken },
                     data: {
                         "power": "on",
                         "color": "green",
@@ -107,8 +111,8 @@
             function blueSwitch() {
                 $.ajax({
                     type: "PUT",
-                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    url: lifxStateUrl,
+                    headers: { "Authorization": bearer + lifxToken },
                     data: {
                         "power": "on",
                         "color": "blue",
@@ -132,8 +136,8 @@
             function purpleSwitch() {
                 $.ajax({
                     type: "PUT",
-                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    url: lifxStateUrl,
+                    headers: { "Authorization": bearer + lifxToken },
                     data: {
                         "power": "on",
                         "color": "purple",
@@ -152,6 +156,32 @@
             } //end of purple
 
             $("#purplebutton").on("click", purpleSwitch);
+
+
+            //yellow switch
+            function yellowSwitch() {
+                $.ajax({
+                    type: "PUT",
+                    url: lifxStateUrl,
+                    headers: { "Authorization": bearer + lifxToken },
+                    data: {
+                        "power": "on",
+                        "color": "yellow",
+
+                        "kelvin": 2700,
+                        "brightness": 0.1,
+                        "fast": false,
+                        "defaults":
+                        {
+                            "duration": 6.0 // all states will be applied over 5 seconds
+
+                        }
+                    }
+                });
+
+            } //end of yellow
+
+            $("#yellowbutton").on("click", yellowSwitch);
 
 
 
@@ -182,8 +212,8 @@
                         if (currentemp < 70) {
                             $.ajax({
                                 type: "PUT",
-                                url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                                headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                                url: lifxStateUrl,
+                                headers: { "Authorization": bearer + lifxToken },
                                 data: {
                                     "power": "on",
                                     "color": "green",
