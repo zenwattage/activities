@@ -18,10 +18,11 @@
 
         <div id="results"></div>
 
-        <button id="button">On/Off</button>
+        <button id="button">On/Off</button>        
         <button id="redbutton">Red</button>
+        <button id="greenbutton">Green</button>
         <button id="bluebutton">Blue</button>
-
+        <button id="purplebutton">Purple</button>
         <script>
 
             var today = new Date();
@@ -49,10 +50,8 @@
             })
 
 
-
-
             //red for hot weather 
-            $("#redbutton").on("click", function () {
+            function redSwitch() {
                 $.ajax({
                     type: "PUT",
                     url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
@@ -61,6 +60,7 @@
                         "power": "on",
                         "color": "red",
                         "brightness": 0.1,
+                        "kelvin": 2700,
                         "fast": false,
                         "defaults":
                         {
@@ -69,13 +69,42 @@
                         }
                     }
                 });
-            })
+            } // end of redSwitch
+
+            $("#redbutton").on("click", redSwitch);
+
+
+
+            //green switch
+            function greenSwitch() {
+                $.ajax({
+                    type: "PUT",
+                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
+                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    data: {
+                        "power": "on",
+                        "color": "green",
+
+                        "kelvin": 2700,
+                        "brightness": 0.1,
+                        "fast": false,
+                        "defaults":
+                        {
+                            "duration": 6.0 // all states will be applied over 5 seconds
+
+                        }
+                    }
+                });
+
+            } //end of green
+
+            $("#greenbutton").on("click", greenSwitch);
 
 
             // blue for rain?
             // or blue for clear ?  flickering for rain?
 
-            $("#bluebutton").on("click", function () {
+            function blueSwitch() {
                 $.ajax({
                     type: "PUT",
                     url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
@@ -93,7 +122,39 @@
                         }
                     }
                 });
-            })
+            } //end of blueSwitch
+
+            $("#bluebutton").on("click", blueSwitch);
+
+
+
+            //purple switch
+            function purpleSwitch() {
+                $.ajax({
+                    type: "PUT",
+                    url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
+                    headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
+                    data: {
+                        "power": "on",
+                        "color": "purple",
+
+                        "kelvin": 2700,
+                        "brightness": 0.1,
+                        "fast": false,
+                        "defaults":
+                        {
+                            "duration": 6.0 // all states will be applied over 5 seconds
+
+                        }
+                    }
+                });
+
+            } //end of purple
+
+            $("#purplebutton").on("click", purpleSwitch);
+
+
+
 
             /* --- WEATHER API  ------ */
             var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=98122&units=imperial&APPID=47cacca1c5c7874804605afd3db23bc5 ";
@@ -143,24 +204,7 @@
                     //humiditychecker
                     function humidityCheck() {
                         if (currenthumid > 70) {
-
-                            $.ajax({
-                                type: "PUT",
-                                url: "https://api.lifx.com/v1/lights/d073d53e6090/state",
-                                headers: { "Authorization": "Bearer cd98e1a574aeb1bb0a18dea42aa3a2ed817ac938425df6acaecd1547d3253e58" },
-                                data: {
-                                    "power": "on",
-                                    "color": "blue",
-                                    "brightness": 0.1,
-                                    "kelvin": 5000,
-                                    "fast": false,
-                                    "defaults":
-                                    {
-                                        "duration": 10.0 // all states will be applied over 5 seconds
-
-                                    }
-                                }
-                            });
+                            blueSwitch;
 
                         }
                     } //end of humidity
