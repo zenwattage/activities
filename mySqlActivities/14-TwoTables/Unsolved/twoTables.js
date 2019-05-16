@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
   database: "top_songsDB"
 });
 
-
+//console.log(connection);
 function getStuff() {
   connection.query("SELECT * FROM top5000", function (err, res) {
     
