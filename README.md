@@ -1,1 +1,3 @@
 # activities
+
+node_modules
