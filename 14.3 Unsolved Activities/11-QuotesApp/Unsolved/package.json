@@ -1,5 +1,5 @@
 {
-  "name": "14_1_unsolved",
+  "name": "exercise1_feel_state",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "exphbs": "^1.2.0",
-    "express": "^4.17.0",
-    "express-handlebars": "^3.1.0"
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.16.0"
   }
 }
