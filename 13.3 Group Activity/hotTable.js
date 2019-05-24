@@ -54,6 +54,10 @@ app.get("/api/view", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
 });
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0641da03c9e62d5314ac22ebda16b1b84105363e
 // Displays all reserved requests
 app.get("/api/table", function(req, res) {
   return res.json(table);
@@ -64,6 +68,10 @@ app.get("/api/waitlist", function(req, res) {
 });
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 0641da03c9e62d5314ac22ebda16b1b84105363e
 // Create New Characters - takes in JSON input
 app.post("/api/make", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
