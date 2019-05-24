@@ -87,6 +87,23 @@ var orm = {
 
       cb(result);
     });
+  },
+
+  update: function(table,cat_id,cb) {
+    var queryString = "DELETE FROM" + table;
+    queryString += " WHERE ";
+    queryString += "id=" +  cat_id;
+  
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+
+
   }
 };
 

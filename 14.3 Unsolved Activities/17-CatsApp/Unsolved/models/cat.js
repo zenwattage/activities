@@ -17,6 +17,11 @@ var cat = {
     orm.update("cats", objColVals, condition, function(res) {
       cb(res);
     });
+  },
+  update: function(table,vals,cb) {
+    orm.delete("cats", table,vals, function(res) {
+      cb(res);
+    })
   }
 };
 
