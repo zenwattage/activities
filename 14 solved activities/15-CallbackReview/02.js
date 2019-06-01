@@ -11,4 +11,4 @@ var addCallBacks = function(functionOne, functionTwo) {
 };
 
 // What does this return?
-addCallBacks(multiply, sum);
+console.log(addCallBacks(multiply, sum));
