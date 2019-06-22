@@ -1,5 +1,6 @@
 try {
 
+<<<<<<< HEAD
     var emptyArray = [];
 
     var array = [0,2,2,4,3,2,8,4];
@@ -25,6 +26,32 @@ function minNum(array) {
     //console.log(min);
 
 }
+=======
+
+
+const terminal = window.createTerminal({runInBackground: true});
+
+//terminal.show();
+
+
+    
+// function fooOne() {
+//     return {
+//         bar: "hello"
+//     };
+// }
+
+// function fooTwo() {
+//     return 
+//     {
+//         bar: "hello"
+//     };
+// }
+
+console.log(fooOne());
+
+console.log(fooTwo());
+>>>>>>> 101afc438388f5f088cb39d4bb919577471ad30e
 
 minNum(emptyArray);
 

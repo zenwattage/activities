@@ -1,8 +1,48 @@
+
+body {
+  height: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-image: url("burgs.jpg");
+  
+
+}
+
+
+.jumbotron-fluid {
+  margin-left: 40px;
+  margin-right: 40px;
+  background-color: rgb(95, 92, 61);
+}
+
+.display-4, .lead {
+  text-align: center;
+}
+
+
+
 li {
   padding: 5px;
   margin: 5px;
   background: #faebd7;
+  
+
 }
+.row {
+  width: 80%;
+  margin: 0;
+}
+.non-eaten{
+
+  margin: 0 auto;
+}
+
+.eaten{
+  margin: 0 auto;
+  background-color: bisque;
+  border: #faebd7 solid 2px;
+}
+
 
 .label {
   font-weight: bold;
