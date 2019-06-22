@@ -1,14 +1,29 @@
 try {
 
+
+
+const terminal = window.createTerminal({runInBackground: true});
+
+//terminal.show();
+
+
     
+// function fooOne() {
+//     return {
+//         bar: "hello"
+//     };
+// }
 
-    var array = [0,1,2,3,4];
-    
+// function fooTwo() {
+//     return 
+//     {
+//         bar: "hello"
+//     };
+// }
 
-    if(array.length >= 5) {
-        console.log("yep");
-    }
+console.log(fooOne());
 
+console.log(fooTwo());
 
     
 
