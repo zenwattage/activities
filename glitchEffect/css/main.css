@@ -1,6 +1,17 @@
 body {
   font-family: 'Courier New', Courier, monospace;
   margin: 0;
+  --color-text: #fff;
+  --color-bg: #000;
+  --color-link: #555;
+  --color-link-hover: #98fadf;
+  --color-info: #f7cfb9;
+  --glitch-width: 100vw;
+  --glitch-height: 100vh;
+  --gap-horizontal: 10px;
+  --gap-vertical: 5px;
+  --time-anim: 4s;
+  --delay-anim: 2s;
 }
 
 .container {
@@ -17,6 +28,12 @@ header a {
   font-weight: bold;
   text-decoration: none;
   color: #9c0eee;
+  isolation: isolate;
+  display: block;
+}
+
+.darkmode--activated main {
+  background: #e77837;
 }
 
 main {
