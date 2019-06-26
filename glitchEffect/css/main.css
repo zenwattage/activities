@@ -1,0 +1,52 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  margin: 0;
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+header a {
+  font-weight: bold;
+  text-decoration: none;
+  color: #9c0eee;
+}
+
+main {
+  padding: 5rem 0;
+  background: #9c0eee;
+  color: white;
+}
+
+main h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+main p {
+  font-size: 1.5em;
+  margin-top: .5rem;
+}
+
+main a {
+  background: white;
+  padding: 1rem 2rem;
+  margin-top: .5rem;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #9c0eee;
+}
+
+section {
+  padding: 4rem 0;
+}
+/*# sourceMappingURL=main.css.map */
