@@ -1,6 +1,5 @@
 try {
 
-<<<<<<< HEAD
     var emptyArray = [];
 
     var array = [0,2,2,4,3,2,8,4];
@@ -26,12 +25,7 @@ function minNum(array) {
     //console.log(min);
 
 }
-=======
 
-
-const terminal = window.createTerminal({runInBackground: true});
-
-//terminal.show();
 
 
     
@@ -51,9 +45,30 @@ const terminal = window.createTerminal({runInBackground: true});
 console.log(fooOne());
 
 console.log(fooTwo());
->>>>>>> 101afc438388f5f088cb39d4bb919577471ad30e
 
 minNum(emptyArray);
+
+
+
+
+var charMap = {};
+
+for (var char of str) {
+    charMap[char] = ++charMap[char] || 1;
+}
+
+
+var max = 0;
+var maxChar = "";
+
+for(var key in charMarp) {
+    if(charMap[key] > max) {
+        max = charMap[key];
+        maxChar = key;
+    }
+}
+return maxChar;
+
 
 } catch (error) {
     console.log(error);
